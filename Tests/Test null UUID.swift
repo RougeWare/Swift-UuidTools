@@ -16,12 +16,7 @@ struct Test_nullUuid {
     
     @Test("UUID.null should be the all‑zero value")
     func isAllZero() async throws {
-        let expected = UUID(uuid: uuid_t(
-            0,0,0,0,
-            0,0,
-            0,0,
-            0,0,
-            0,0,0,0,0,0))
+        let expected = UUID(uuid: uuid_t(0,0,0,0, 0,0, 0,0, 0,0, 0,0,0,0,0,0))
         #expect(UUID.null == expected)
     }
     
