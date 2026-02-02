@@ -40,6 +40,11 @@ struct kyuuid: ParsableCommand {
     
     
     mutating func run() throws {
+        guard 1 < self.repeat || isOutputToTerminal() else {
+            print(format.apply(to: null ? .null : UUID()), terminator: "")
+            return
+        }
+        
         for _ in 1 ... max(1, self.repeat) {
             print(format.apply(to: null ? .null : UUID()))
         }
@@ -62,4 +67,10 @@ private var formatsDiscussion: String {
     
     """}.joined())
     """
+}
+
+
+
+private func isOutputToTerminal() -> Bool {
+    return isatty(STDOUT_FILENO) != 0
 }
