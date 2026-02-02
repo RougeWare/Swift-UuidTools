@@ -108,6 +108,20 @@ If you just want to convert UUIDs from one UUID string format directly to anothe
 
 
 
+## Predefined constants
+
+### The nil UUID
+
+[The nil UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier#Special_values) is `00000000-0000-0000-0000-000000000000`. This is useful for saying "no value" in a place which requires a value, like a database or as a dummy value in a preview/demo/PoC. `UuidTools` exposes this as the constant `UUID.null`:
+
+```swift
+#Preview {
+    UserProfileView(id: .null, name: "Rayne")
+}
+```
+
+
+
 
 
 # `kyuuid`
@@ -141,7 +155,7 @@ This utility offers 3 different formatting options:
 
 
 
-USAGE: kyuuid [--format <format>] [--repeat <repeat>] <subcommand>
+USAGE: kyuuid [--format <format>] [--repeat <repeat>] [--null] <subcommand>
 
 OPTIONS:
   --format <format>       The output format of the UUID(s) this generates. See
@@ -150,6 +164,7 @@ OPTIONS:
   --repeat <repeat>       The number of UUIDs to generate at once. Each UUID
                           will be printed on its own line and formatted as
                           specified with the `--format` option. (default: 1)
+  --null                  Causes the generated UUID to be the nil UUID
   --version               Show the version.
   -h, --help              Show help information.
 
