@@ -23,7 +23,7 @@ struct convert: ParsableCommand {
         """,
 
         // Commands can define a version for automatic '--version' support.
-        version: "0.1.1-lambda.4")
+        version: kyuuid.configuration.version)
     
     @Option
     var to: UuidFormat = .default
