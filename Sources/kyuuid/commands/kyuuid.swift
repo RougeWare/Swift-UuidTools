@@ -23,13 +23,9 @@ struct kyuuid: ParsableCommand {
         
         \(formatsDiscussion)
         """,
-
-        // Commands can define a version for automatic '--version' support.
-        version: "0.3.0",
-
-        // Pass an array to `subcommands` to set up a nested tree of subcommands.
-        // With language support for type-level introspection, this could be
-        // provided by automatically finding nested `ParsableCommand` types.
+        
+        version: "0.4.0",
+        
         subcommands: [convert.self])
     
     
@@ -39,11 +35,16 @@ struct kyuuid: ParsableCommand {
     @Option(help: "The number of UUIDs to generate at once. Each UUID will be printed on its own line and formatted as specified with the `--format` option.")
     var `repeat`: UInt = 1
     
-    @Option(help: "Causes the generated UUID to be the nil UUID")
+    @Flag(help: "Causes the generated UUID to be the nil UUID")
     var null = false
     
     
     mutating func run() throws {
+        guard 1 < self.repeat || isOutputToTerminal() else {
+            print(format.apply(to: null ? .null : UUID()), terminator: "")
+            return
+        }
+        
         for _ in 1 ... max(1, self.repeat) {
             print(format.apply(to: null ? .null : UUID()))
         }
@@ -66,4 +67,10 @@ private var formatsDiscussion: String {
     
     """}.joined())
     """
+}
+
+
+
+private func isOutputToTerminal() -> Bool {
+    return isatty(STDOUT_FILENO) != 0
 }

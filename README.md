@@ -108,13 +108,69 @@ If you just want to convert UUIDs from one UUID string format directly to anothe
 
 
 
+## Predefined constants
+
+### The nil UUID
+
+[The nil UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier#Special_values) is `00000000-0000-0000-0000-000000000000`. This is useful for saying "no value" in a place which requires a value, like a database or as a dummy value in a preview/demo/PoC. `UuidTools` exposes this as the constant `UUID.null`:
+
+```swift
+#Preview {
+    UserProfileView(id: .null, name: "Rayne")
+}
+```
+
+
+
 
 
 # `kyuuid`
 
 This package also ships as a binary executable to allow you to format, parse, and convert UUIDs from the command line.
 
+## Default operation
+
+Given no arguments, `kyuuid` just spits out a random UUID (version 4) in the canonical string representation.
+
+```plain
+% kyuuid
+49F26C1A-9122-4B01-AFB9-2C9B295BEA11
+```
+
+
+
+## Formatting
+
+`kyuuid` supports formatting UUIDs into the same string representations as `UuidTools`:
+
+```plain
+% kyuuid --format=standard
+AD13CA92-ACC7-42CD-A79F-6FDC38460661
+
+% kyuuid --format=base64  
+1oH/X3qVSbCMP7+gDqWjNQ==
+
+% kyuuid --format=truncatedBase64
+Any1DX0QRhW8iur4aQrupg
+```
+
+
+
 ## Converting
+
+Just as `kyuuid` supports outputting UUIDs in those formats, it also supports converting to and from them with the `convert` subcommand. You can select which format you're converting to with the `--to` flag, which accepts all formats that `kyuuid --format` accepts. If you omit the `--to` flag, the standard format is assumed.
+
+```plain
+% kyuuid convert Any1DX0QRhW8iur4aQrupg
+027CB50D-7D10-4615-BC8A-EAF8690AEEA6
+
+% kyuuid convert --to=base64 468FB857-3C7B-49E8-A642-344E8C5A525F
+Ro+4Vzx7SeimQjROjFpSXw==
+
+% kyuuid convert --to=truncatedBase64 468FB857-3C7B-49E8-A642-344E8C5A525F
+Ro+4Vzx7SeimQjROjFpSXw
+```
+
 
 
 ## Help output
@@ -141,7 +197,7 @@ This utility offers 3 different formatting options:
 
 
 
-USAGE: kyuuid [--format <format>] [--repeat <repeat>] <subcommand>
+USAGE: kyuuid [--format <format>] [--repeat <repeat>] [--null] <subcommand>
 
 OPTIONS:
   --format <format>       The output format of the UUID(s) this generates. See
@@ -150,6 +206,7 @@ OPTIONS:
   --repeat <repeat>       The number of UUIDs to generate at once. Each UUID
                           will be printed on its own line and formatted as
                           specified with the `--format` option. (default: 1)
+  --null                  Causes the generated UUID to be the nil UUID
   --version               Show the version.
   -h, --help              Show help information.
 
