@@ -25,7 +25,7 @@ struct kyuuid: ParsableCommand {
         """,
 
         // Commands can define a version for automatic '--version' support.
-        version: "0.1.3-lambda.1",
+        version: "0.3.0",
 
         // Pass an array to `subcommands` to set up a nested tree of subcommands.
         // With language support for type-level introspection, this could be
@@ -39,9 +39,13 @@ struct kyuuid: ParsableCommand {
     @Option(help: "The number of UUIDs to generate at once. Each UUID will be printed on its own line and formatted as specified with the `--format` option.")
     var `repeat`: UInt = 1
     
+    @Option(help: "Causes the generated UUID to be the nil UUID")
+    var null = false
+    
+    
     mutating func run() throws {
         for _ in 1 ... max(1, self.repeat) {
-            print(format.apply(to: UUID()))
+            print(format.apply(to: null ? .null : UUID()))
         }
     }
 }
