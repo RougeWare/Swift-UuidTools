@@ -33,19 +33,19 @@ struct kyuuid: ParsableCommand {
     var format: UuidFormat = .default
     
     @Option(help: "The number of UUIDs to generate at once. Each UUID will be printed on its own line and formatted as specified with the `--format` option.")
-    var `repeat`: UInt = 1
+    var count: UInt = 1
     
     @Flag(help: "Causes the generated UUID to be the nil UUID")
     var null = false
     
     
     mutating func run() throws {
-        guard 1 < self.repeat || isOutputToTerminal() else {
+        guard 1 < self.count || isOutputToTerminal() else {
             print(format.apply(to: null ? .null : UUID()), terminator: "")
             return
         }
         
-        for _ in 1 ... max(1, self.repeat) {
+        for _ in 1 ... max(1, self.count) {
             print(format.apply(to: null ? .null : UUID()))
         }
     }

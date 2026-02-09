@@ -197,13 +197,13 @@ This utility offers 3 different formatting options:
 
 
 
-USAGE: kyuuid [--format <format>] [--repeat <repeat>] [--null] <subcommand>
+USAGE: kyuuid [--format <format>] [--count <count>] [--null] <subcommand>
 
 OPTIONS:
   --format <format>       The output format of the UUID(s) this generates. See
                           FORMATS for more info. (values: standard, base64,
                           truncatedBase64; default: standard)
-  --repeat <repeat>       The number of UUIDs to generate at once. Each UUID
+  --count <count>         The number of UUIDs to generate at once. Each UUID
                           will be printed on its own line and formatted as
                           specified with the `--format` option. (default: 1)
   --null                  Causes the generated UUID to be the nil UUID
