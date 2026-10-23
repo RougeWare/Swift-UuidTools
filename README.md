@@ -1,3 +1,9 @@
+[![Swift versions](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2FRougeWare%2FSwift-UuidTools%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/RougeWare/Swift-UuidTools)
+[![Platforms](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2FRougeWare%2FSwift-UuidTools%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/RougeWare/Swift-UuidTools)
+[![Latest release](https://img.shields.io/github/v/release/RougeWare/Swift-UuidTools)](https://github.com/RougeWare/Swift-UuidTools/releases)
+[![Last commit](https://img.shields.io/github/last-commit/RougeWare/Swift-UuidTools)](https://github.com/RougeWare/Swift-UuidTools/commits)
+
+
 # UUID Tools
 
 
