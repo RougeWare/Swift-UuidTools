@@ -4,7 +4,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "kyuuid",
+    name: "UuidTools",
     
     platforms: [
         .macOS(.v13),
