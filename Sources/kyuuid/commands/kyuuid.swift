@@ -24,7 +24,7 @@ struct kyuuid: ParsableCommand {
         \(formatsDiscussion)
         """,
         
-        version: "0.4.0",
+        version: "1.0.2",
         
         subcommands: [convert.self])
     
